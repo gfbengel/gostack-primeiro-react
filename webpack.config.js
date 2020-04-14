@@ -5,10 +5,10 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'public'),
 		filename: 'bundle.js'
-  },
-  devServer: {
-    contentBase: path.resolve(__dirname, 'public'),
-  },
+	},
+	devServer: {
+		contentBase: path.resolve(__dirname, 'public'),
+	},
 	module: {
 		rules: [
 			{
@@ -16,6 +16,20 @@ module.exports = {
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader'
+				}
+			},
+			{
+				test: /\.css$/,
+				exclude: /node_modules/,
+				use: [
+					{ loader: 'style-loader' },
+					{ loader: 'css-loader' }
+				]
+			},
+			{
+				test: /.*\.(gif|jpe?g|png|svg)$/i,
+				use: {
+					loader: 'file-loader'
 				}
 			}
 		]
